@@ -1,5 +1,7 @@
 # Patient-Specific Setup Error Threshold Prediction (Stacking Ensemble)
 
+[![DOI](https://zenodo.org/badge/1338980828.svg)](https://doi.org/10.5281/zenodo.22004922)
+
 Analysis code for the manuscript:
 
 > **Prediction of patient-specific setup error thresholds using stacking ensemble meta-learning in breast-conserving hypofractionated radiotherapy**
@@ -19,6 +21,11 @@ This repository contains the complete R analysis pipeline used in the study:
 7. **Model interpretation** — permutation variable importance, partial dependence profiles, and SHAP values (`DALEXtra`).
 8. **Decision curve analysis** — `dcurves`, including the factor-level fix for the event definition.
 9. **Patient-specific threshold prediction** — illustrative worked example scanning setup error from -0.5 to 0.5 cm to locate the individualised intervention threshold (predicted probability = 0.5).
+
+## Citation
+
+If you use this code, please cite the archived release:
+https://doi.org/10.5281/zenodo.22004922
 
 ## Requirements
 
