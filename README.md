@@ -12,6 +12,8 @@ Analysis code for the manuscript:
 
 This repository contains the complete R analysis pipeline used in the study:
 
+**Main analysis** (`TM_Dose_error_group_analysis.R`):
+
 1. **Data preprocessing** — long-format reshaping of patient-axis-level dose–error data (50 patients x 3 axes x 11 simulated setup-error levels = 1650 observations); outcome defined as D95 < 95% of prescribed dose.
 2. **Grouped data splitting** — patient-level (`ID`) group split, 80/20 (40/10 patients; 1320/330 observations), and repeated 5-fold cross-validation (5 repeats) grouped by patient.
 3. **Candidate model tuning** — 8 base learners (DT, CT, RF, bagged C5.0 trees, glmnet logistic regression, SVM, MLP, KNN) tuned with ANOVA racing (`finetune::tune_race_anova`, 80 candidate configurations per model).
@@ -21,6 +23,14 @@ This repository contains the complete R analysis pipeline used in the study:
 7. **Model interpretation** — permutation variable importance, partial dependence profiles, and SHAP values (`DALEXtra`).
 8. **Decision curve analysis** — `dcurves`, including the factor-level fix for the event definition.
 9. **Patient-specific threshold prediction** — illustrative worked example scanning setup error from -0.5 to 0.5 cm to locate the individualised intervention threshold (predicted probability = 0.5).
+
+**Supplementary robustness and sensitivity analyses** (`supplementary_analyses.R`, added at revision; run after the main script):
+
+10. **Patient-level bootstrap** — 2,000-replicate bootstrap 95% CI for the test-set AUC, resampling patients rather than observations.
+11. **Learning curves** — the complete stacking pipeline refitted on random subsets of 8–40 training patients (4 repeats), evaluated by nested five-fold group cross-validation.
+12. **Repeated splits** — the patient-level 80:20 split repeated 20 times with the complete pipeline refitted, giving the sampling distribution of test-set performance.
+13. **Outcome-definition sensitivity** — inadequate target coverage redefined at D95 thresholds of 93/94/95/96/97%, with the pipeline refitted for each definition.
+14. **Repeated cross-validation** — three repeats of five-fold group cross-validation of the complete pipeline over the full cohort.
 
 ## Citation
 
